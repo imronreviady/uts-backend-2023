@@ -52,7 +52,7 @@ class NewsController extends Controller
         $news = News::create($data);
 
         // return success response
-        return ResponseFormatter::success($news, 'Data news berhasil ditambahkan');
+        return ResponseFormatter::success($news, 'Data news berhasil ditambahkan', 201);
     }
 
     /**

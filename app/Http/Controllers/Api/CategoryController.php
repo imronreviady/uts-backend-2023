@@ -57,7 +57,7 @@ class CategoryController extends Controller
         ]);
 
         // return success response
-        return ResponseFormatter::success($category, 'Data category berhasil ditambahkan');
+        return ResponseFormatter::success($category, 'Data category berhasil ditambahkan', 201);
     }
 
     /**

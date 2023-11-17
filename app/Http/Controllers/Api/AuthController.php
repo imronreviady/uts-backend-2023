@@ -46,7 +46,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
-        ], 'Authenticated');
+        ], 'Authenticated', 200);
     }
 
     /**
@@ -82,7 +82,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
-        ], 'Authenticated');
+        ], 'Authenticated', 200);
     }
 
     /**
@@ -92,7 +92,7 @@ class AuthController extends Controller
     {
         $token = $request->user()->currentAccessToken()->delete();
 
-        return ResponseFormatter::success($token, 'Token Revoked');
+        return ResponseFormatter::success($token, 'Token Revoked', 200);
     }
 
 }
