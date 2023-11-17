@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\News;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -136,5 +138,44 @@ class NewsController extends Controller
 
         // return success response
         return ResponseFormatter::success(null, 'Data news berhasil dihapus');
+    }
+
+    /**
+     * Search by keyword.
+     */
+    public function search(Request $request)
+    {
+        // get keyword
+        $keyword = $request->keyword;
+
+        // search news
+        $news = News::where('title', 'like', "%$keyword%")
+            ->orWhere('description', 'like', "%$keyword%")
+            ->orWhere('content', 'like', "%$keyword%")
+            ->orWhere('category', 'like', "%$keyword%")
+            ->get();
+
+        // return success response
+        return ResponseFormatter::success($news, 'Data news berhasil dicari');
+    }
+
+    /**
+     * Get news by category.
+     */
+    public function category(string $category)
+    {
+        // get category
+        $category = Category::where('slug', $category)->first();
+
+        // check if category not found
+        if (!$category) {
+            return ResponseFormatter::error(null, 'Data category tidak ditemukan', 404);
+        }
+
+        // get news by category
+        $news = $category->news()->get();
+
+        // return success response
+        return ResponseFormatter::success($news, 'Data news berhasil dicari');
     }
 }
