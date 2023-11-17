@@ -58,10 +58,10 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(string $id)
     {
         // show news detail
-        $news = News::find($request->id);
+        $news = News::find($id);
 
         // check news
         if (!$news) {
@@ -78,7 +78,7 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
         // validate input
         $rules = [
@@ -99,7 +99,7 @@ class NewsController extends Controller
             return ResponseFormatter::error(null, $message, 500);
         }
 
-        $news = News::find($request->id);
+        $news = News::find($id);
 
         // check news
         if (!$news) {
@@ -116,10 +116,10 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(string $id)
     {
         // delete news
-        $news = News::find($request->id);
+        $news = News::find($id);
 
         // check news
         if (!$news) {

@@ -37,3 +37,15 @@ Route::delete('news/{id}', 'App\Http\Controllers\Api\NewsController@destroy')->m
 Route::get('news/search/{keyword}', 'App\Http\Controllers\Api\NewsController@search');
 // news category route
 Route::get('news/category/{category}', 'App\Http\Controllers\Api\NewsController@category');
+// category route
+Route::get('category', 'App\Http\Controllers\Api\CategoryController@index');
+// category add route
+Route::post('category', 'App\Http\Controllers\Api\CategoryController@store')->middleware('auth:sanctum');
+// category get detail route
+Route::get('category/{id}', 'App\Http\Controllers\Api\CategoryController@show');
+// category update route
+Route::put('category/{id}', 'App\Http\Controllers\Api\CategoryController@update')->middleware('auth:sanctum');
+// category delete route
+Route::delete('category/{id}', 'App\Http\Controllers\Api\CategoryController@destroy')->middleware('auth:sanctum');
+// category search route
+Route::get('category/search/{keyword}', 'App\Http\Controllers\Api\CategoryController@search');
