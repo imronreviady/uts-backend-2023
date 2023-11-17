@@ -14,6 +14,11 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        request()->headers->set("Accept", "application/json");
+    }
+
     /**
      * Display a listing of the resource.
      */

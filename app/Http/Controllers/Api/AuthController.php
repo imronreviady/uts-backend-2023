@@ -14,6 +14,11 @@ use App\Helpers\ResponseFormatter;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        request()->headers->set("Accept", "application/json");
+    }
+
     /**
      * Generate santum token
      */
